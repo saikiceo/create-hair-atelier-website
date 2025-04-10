@@ -1,0 +1,97 @@
+/* src/styles/global.css */
+
+/* Google Fontsからフォントを読み込みます (例: Playfair Display と Helvetica Neue) */
+/* 実際に使うフォントに合わせて変更・追加してください */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Helvetica+Neue:wght@400;700&display=swap');
+
+/* --- 基本的なリセットスタイル --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* paddingとborderをwidth/heightに含める */
+  margin: 0; /* 全ての要素のデフォルトマージンを削除 */
+  padding: 0; /* 全ての要素のデフォルトパディングを削除 */
+}
+
+/* htmlとbodyの基本設定 */
+html, body, #root { /* #root はReactアプリのルート要素 */
+  height: 100%; /* 高さを画面全体にする */
+  scroll-behavior: smooth; /* ページ内リンクでの移動をスムーズにする */
+}
+
+body {
+  /* theme.js で定義したフォントや色をここで使うこともできますが、 */
+  /* styled-components を使う場合はそちらで指定する方が一般的です */
+  /* ここでは基本的なフォントファミリーと背景色、文字色だけ設定します */
+  font-family: 'Helvetica Neue', 'Arial', sans-serif; /* 基本フォント */
+  background-color: #F8F8F8; /* 基本背景色 (theme.colors.background) */
+  color: #333333; /* 基本文字色 (theme.colors.text) */
+  line-height: 1.6; /* 行間を読みやすく設定 */
+  -webkit-font-smoothing: antialiased; /* フォントを滑らかに表示 (Mac/iOS向け) */
+  -moz-osx-font-smoothing: grayscale; /* フォントを滑らかに表示 (Firefox向け) */
+  overflow-x: hidden; /* 横方向のスクロールバーを原則表示しない */
+}
+
+/* --- 見出し (h1-h6) の基本スタイル --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif; /* 見出し用フォント (theme.fonts.heading) */
+  font-weight: 700; /* 太字 */
+  line-height: 1.2; /* 見出しの行間を少し詰める */
+  color: #333333; /* デフォルトの見出し色 (theme.colors.text) - 各セクションで上書き可能 */
+}
+
+/* 見出しのサイズ例（必要に応じて調整） */
+h1 { font-size: 2.8rem; } /* rem はルート要素のフォントサイズ基準 */
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+
+/* --- リンク (aタグ) の基本スタイル --- */
+a {
+  color: #D0006F; /* リンク色 (theme.colors.primary) */
+  text-decoration: none; /* 下線を削除 */
+  transition: color 0.3s ease; /* 色が変わるアニメーション */
+}
+
+a:hover { /* マウスが乗った時のスタイル */
+  color: #00FFFF; /* ホバー時の色 (theme.colors.accent) */
+  /* text-decoration: underline; */ /* 必要ならホバー時に下線を表示 */
+}
+
+/* --- 画像、動画、SVG の基本スタイル --- */
+img, video, svg {
+  max-width: 100%; /* 親要素の幅を超えないようにする */
+  height: auto; /* 高さは自動調整（縦横比を保つ） */
+  display: block; /* 画像下の余分なスペースを削除 */
+}
+
+/* --- アクセシビリティのためのフォーカススタイル --- */
+/* キーボード操作時などに要素がフォーカスされた際の見た目 */
+*:focus-visible {
+  outline: 3px solid #00FFFF; /* フォーカス時の枠線 (theme.colors.accent) */
+  outline-offset: 3px; /* 要素と枠線の間に少し隙間を空ける */
+  border-radius: 2px; /* 枠線の角を少し丸める */
+}
+
+/* --- スクロールバーのスタイル (任意、デザインに合わせて調整) --- */
+/* Webkit系ブラウザ (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px; /* スクロールバーの幅 */
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* スクロールバーの背景（溝） */
+}
+::-webkit-scrollbar-thumb {
+  background: #AAAAAA; /* スクロールバーのつまみ (theme.colors.secondary) */
+  border-radius: 5px; /* つまみの角を丸める */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D0006F; /* つまみにマウスが乗った時の色 (theme.colors.primary) */
+}
+
+/* --- 特定ライブラリ用のスタイル調整 (必要に応じて) --- */
+/* 例: ReactPlayerのフォーカス時の見た目を調整 */
+.react-player > div[tabindex="0"]:focus-visible {
+    outline: 3px solid #00FFFF !important; /* !important で優先度を上げる */
+    outline-offset: 3px !important;
+}
